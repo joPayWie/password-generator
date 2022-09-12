@@ -4,9 +4,98 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon.ico">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="js/script.js" defer> </script>
     <title>Password generator</title>
 </head>
 <body>
-    
+    <main> 
+        <section>
+            <h1> Password generator </h1>
+            <p> Generate secure, random passwords to stay safe online. </p>
+            <div class="display-and-refresh">
+                <div id="display-password"> 
+                    <span id="password-itself">                        
+                    </span> 
+                </div>
+                <button id="refresh-token" aria-label="Refresh password button"> 
+                    <i class="fa-solid fa-arrows-rotate"></i> 
+                </button>
+            </div>
+            <div class="copy-token"> 
+                <!-- <select aria-label="Select a type of password"> 
+                </select> -->
+                <button id="copy-password" aria-label="Copy password to clipboard"> 
+                    Copy to clipboard 
+                    <i class="fa-solid fa-copy"></i> 
+                </button>
+            </div>
+
+            <div class="password-options"> 
+                <!-- <div class="length-selection"> 
+                    <label for="myRange"> </label>
+                    <input type="range" min="8" max="100" class="option-text" id="myRange">
+                </div> -->
+                <div class="option-container">
+                    <form>
+                        <h3> Password type </h3>
+                        <div class="checkbox-container">
+                            <input type="checkbox" name="letters" id="letters" checked> 
+                            <label for="letters"> Letters </label>
+                        </div>
+                        <div class="checkbox-container">
+                            <input type="checkbox" name="numbers" id="numbers"> 
+                            <label for="numbers"> Numbers </label>
+                        </div>
+                        <div class="checkbox-container">
+                            <input type="checkbox" name="symbols" id="symbols">
+                            <label for="symbols"> Symbols </label>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="option-container">
+                    <form>
+                        <h3> Password length </h3> 
+                        <div class="checkbox-container">
+                            <input type="radio" name="length" id="char8" value="8" checked> 
+                            <label for="char8"> 8 char </label>
+                        </div>
+                        <div class="checkbox-container">
+                            <input type="radio" name="length" value= "12" id="char12"> 
+                            <label for="char12"> 12 char </label>
+                        </div>
+                        <div class="checkbox-container">
+                            <input type="radio" name="length" value="16" id="char16"> 
+                            <label for="char16"> 16 char </label>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="option-container">
+                    <form>
+                        <h3> Letter type </h3> 
+                        <div class="checkbox-container">
+                            <input type="checkbox" name="lower" id="lower" checked> 
+                            <label for="lower"> Lowercase </label>
+                        </div>
+                        <div class="checkbox-container">
+                            <input type="checkbox" name="caps" id="caps"> 
+                            <label for="caps"> Capital </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <span class="build-with"> Build with &#128154; by 
+            <strong class="made-jopay">JoPay</strong> 
+        </span>
+    </footer>
 </body>
 </html>
