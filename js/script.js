@@ -112,9 +112,10 @@ const generatePassword = () => {
 
     console.log(passArray.length)
     if (passArray.length === 9) {
-            passArray.slice(0,7)
+            passArray = passArray.slice(0,8)
         }  // no anda por resolver
         console.log(passArray.length)
+    
     shuffleCharacters(passArray)
     return passArray.join('')
 }
@@ -132,5 +133,11 @@ const showPassOnDisplay = () => {
 showPassOnDisplay()
 
 // events
+
+// click generate
+
+// click refresh
+
+// click copy to clipboard
 
 // make an event change that disables lower and caps checkbox if user doesn't check letter options
