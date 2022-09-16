@@ -30,7 +30,8 @@
                 <!-- <select aria-label="Select a type of password"> 
                 </select> -->
                 <button class="generate-copy-btn" id="generate-password" aria-label="Generate password"> 
-                    Generate 
+                    Generate
+                    <i class="fa-solid fa-bolt"></i>
                 </button>
                 <button class="generate-copy-btn" id="copy-password" aria-label="Copy password to clipboard"> 
                     Copy to clipboard 
@@ -69,11 +70,11 @@
                             <label for="letters"> Letters </label>
                         </div>
                         <div class="checkbox-container">
-                            <input type="checkbox" name="numbers" id="numbers"> 
+                            <input type="checkbox" name="numbers" id="numbers" checked> 
                             <label for="numbers"> Numbers </label>
                         </div>
                         <div class="checkbox-container">
-                            <input type="checkbox" name="symbols" id="symbols">
+                            <input type="checkbox" name="symbols" id="symbols" checked>
                             <label for="symbols"> Symbols </label>
                         </div>
                     </form>
@@ -83,11 +84,11 @@
                     <form>
                         <h3> Letter type </h3> 
                         <div class="checkbox-container">
-                            <input type="checkbox" name="lower" id="lower" checked> 
+                            <input type="checkbox" name="lower" class="letter-selection" id="lower" checked> 
                             <label for="lower"> Lowercase </label>
                         </div>
                         <div class="checkbox-container">
-                            <input type="checkbox" name="caps" id="caps"> 
+                            <input type="checkbox" name="caps"  class="letter-selection" id="caps" checked> 
                             <label for="caps"> Capital </label>
                         </div>
                     </form>
