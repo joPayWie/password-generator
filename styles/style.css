@@ -336,6 +336,7 @@ strong{
 @media (max-width: 375px) {
     body {
         height: 90vh;
+        overflow-y: hidden;
     }
     main {
         height: 87.5vh;
