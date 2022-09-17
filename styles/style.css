@@ -335,7 +335,7 @@ strong{
 
 @media (max-width: 375px) {
     body {
-        overflow-y: auto;
+        height: 90vh;
     }
     main {
         height: 87.5vh;
