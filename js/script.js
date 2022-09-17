@@ -3,7 +3,7 @@
 const $$ = (selector) => document.querySelectorAll(selector)
 const $ = (selector) => document.querySelector(selector)
 
-/* VARIABLES */
+/***************** VARIABLES ***************/  
 
 /* *************** array data ***************** */
 
@@ -37,7 +37,7 @@ const $lowercase = $("#lower")
 const $capital = $("#caps")
 
 
-/* FUNCTIONS */
+/***************** FUNCTIONS *******************/ 
 
 const getRandomCharacter = (array) => {
     let randomIndex = Math.floor(Math.random() * array.length)
@@ -45,7 +45,7 @@ const getRandomCharacter = (array) => {
     return randomSelection  
 } 
 
-const generatePassword = () => {
+const generateLargePassword = () => {
     let passArray = [];
     while (passArray.length < 64) {
         let character = getRandomCharacter(lowerLetters)
@@ -58,19 +58,11 @@ const generatePassword = () => {
         passArray.push(character)
     }
     return passArray
- }
+}
 
-// const saveCheckedInputs = () => {
-//     let lowerChecked = $lowercase.checked
-//     let capitalChecked = $capital.checked
-//     let numberChecked = $containsNumbers.checked
-//     let symbolChecked = $containsSymbols.checked
-//     checkedArr.push(lowerChecked, capitalChecked, numberChecked, symbolChecked)
-//     return checkedArr
-// }
 
 const defineCheckedCharacters = () => {
-    let passArray = generatePassword()
+    let passArray = generateLargePassword()
     if (!$lowercase.checked) {
         passArray = passArray.filter((letter) => {
             return !lowerLetters.includes(letter)
@@ -134,7 +126,7 @@ const showPassOnDisplay = () => {
 
 showPassOnDisplay()
 
-/* EVENTS */
+/***************** EVENTS *******************/ 
 
 $copyPass.addEventListener("click", (e) => {
     navigator.clipboard.writeText($passItself.innerText)
@@ -177,7 +169,6 @@ $generatePass.addEventListener("click", (e) => {
     showPassOnDisplay()
 })
 
-// cómo vergas hago esto??? 
 $refreshPass.addEventListener("click", (e) => {
     showPassOnDisplay()
 })

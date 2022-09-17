@@ -141,7 +141,6 @@ button {
     cursor: pointer;
     font-size: 1rem;
     position: relative;
-    transition: background-color 0.2s;
 }
 
 #generate-password {
@@ -157,13 +156,9 @@ button {
     background-color:#C797DB;
 } 
 
-#copy-password:before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: linear-gradient(90deg, transparent, #fff, transparent);
-    transform: translateX(-180px) skew(-20deg);
-    transition: transform 0.4s;
+#copy-password:active {
+    background-color: rgb(105, 105, 105);
+    color: rgb(255, 208, 0)
 }
 
 .generate-copy-btn:hover .fa-bolt {
