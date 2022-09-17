@@ -116,8 +116,8 @@ const shuffleCharacters = (array) => {
 }
 
 const getFinalPassword = () => {
-    let passwordGenerated = shuffleCharacters(cutPassword().join(''))
-    return passwordGenerated
+    let passwordGenerated = shuffleCharacters(cutPassword())
+    return passwordGenerated.join('')
 }
 
 const showPassOnDisplay = () => {
