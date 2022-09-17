@@ -238,7 +238,7 @@ strong{
     }
 }
 
-/* mobile */
+/* mobile 1 */
 
 @media (max-width: 450px) {
     main {
@@ -329,4 +329,17 @@ strong{
     strong {
         font-size: 25px;
     }
+}
+
+/* mobile 2 */ 
+
+@media (max-width: 375px) {
+    main {
+        height: 87.5vh;
+    }
+    section {
+        height: 85%;
+        padding: 32.5px;
+    }
+
 }
