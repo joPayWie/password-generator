@@ -334,6 +334,9 @@ strong{
 /* mobile 2 */ 
 
 @media (max-width: 375px) {
+    body {
+        overflow-y: auto;
+    }
     main {
         height: 87.5vh;
     }
