@@ -22,41 +22,35 @@
                     <span id="password-itself">                        
                     </span> 
                 </div>
-                <button id="refresh-token" aria-label="Refresh password button"> 
-                    <i class="fa-solid fa-arrows-rotate"></i> 
+                <button id="refresh-token" class="generate-new-pass" aria-label="Refresh password"> 
+                    <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> 
                 </button>
             </div>
             <div class="generate-and-copy"> 
-                <!-- <select aria-label="Select a type of password"> 
-                </select> -->
-                <button class="generate-copy-btn" id="generate-password" aria-label="Generate password"> 
+                <button class="generate-copy-btn generate-new-pass" id="generate-password" aria-label="Generate new password"> 
                     Generate
-                    <i class="fa-solid fa-bolt"></i>
+                    <i class="fa-solid fa-bolt" aria-hidden="true"></i>
                 </button>
                 <button class="generate-copy-btn" id="copy-password" aria-label="Copy password to clipboard"> 
-                    Copy to clipboard 
-                    <i class="fa-solid fa-copy"></i> 
+                    <span class="copy-text"> Copy to clipboard  </span>
+                    <i class="fa-solid fa-copy" aria-hidden="true"></i> 
                 </button>
             </div>
 
             <div class="password-options"> 
-                <!-- <div class="length-selection"> 
-                    <label for="myRange"> </label>
-                    <input type="range" min="8" max="100" class="option-text" id="myRange">
-                </div> -->
                 <div class="option-container">
                     <form>
                         <h3> Password length </h3> 
                         <div class="checkbox-container">
-                            <input type="radio" name="length" id="char8" value="8" checked> 
+                            <input type="radio" name="length" id="char8" checked> 
                             <label for="char8"> 8 char </label>
                         </div>
                         <div class="checkbox-container">
-                            <input type="radio" name="length" value= "12" id="char12"> 
+                            <input type="radio" name="length" id="char12"> 
                             <label for="char12"> 12 char </label>
                         </div>
                         <div class="checkbox-container">
-                            <input type="radio" name="length" value="16" id="char16"> 
+                            <input type="radio" name="length" id="char16"> 
                             <label for="char16"> 16 char </label>
                         </div>
                     </form>

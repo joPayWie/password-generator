@@ -18,11 +18,12 @@ const symbols = ['$', '#', '?', '&', '+', '!'];
 
 /* *************** DOM selectors ***************** */
 
-const $passDisplay = $("#display-password")
 const $passItself = $("#password-itself")
 const $refreshPass = $("#refresh-token")
 const $copyPass = $("#copy-password")
 const $generatePass = $("#generate-password")
+const $$generateOrRefreshNewPass = $$(".generate-new-pass")
+const $$letterSelection = $$(".letter-selection")
 
 
 /* *************** password option inputs ***************** */
@@ -101,9 +102,9 @@ const defineCheckedCharacters = () => {
 } 
 
 const cutPassword = () => {
-    let passLength = stablishLength()
-    let passToCut = defineCheckedCharacters()
-    passToCut = passToCut.slice(0,passLength)
+    let passLength = stablishLength();
+    let passToCut = defineCheckedCharacters();
+    passToCut = passToCut.slice(0,passLength);
     return passToCut
 }         
 
@@ -126,50 +127,50 @@ const showPassOnDisplay = () => {
 
 showPassOnDisplay()
 
-/***************** EVENTS *******************/ 
+/***************** EVENTS *******************/
 
 $copyPass.addEventListener("click", (e) => {
-    navigator.clipboard.writeText($passItself.innerText)
+    const $copyTxt = $(".copy-text")
+    navigator.clipboard.writeText($passItself.innerText);
+    $copyTxt.innerHTML = 'COPIED!';
+    $copyTxt.style.color = '#ffd000';
+    $copyPass.style.backgroundColor = '#723D63';
+    const returnToPreviousCopyBtn = () => {
+        $copyPass.removeAttribute('style');
+        $copyTxt.removeAttribute('style');
+        $copyTxt.innerHTML = 'Copy to clipboard';
+    }
+    window.setTimeout(returnToPreviousCopyBtn, 1000)
 })
 
 $containsLetters.addEventListener("click", (e) => {
     if (!$containsLetters.checked) {
         $capital.checked = false
         $lowercase.checked = false
-        $lowercase.setAttribute("disabled", '')
-        $capital.setAttribute("disabled", '')
+        $lowercase.setAttribute("disabled", '');
+        $capital.setAttribute("disabled", '');
     }
     if ($containsLetters.checked) {
-        $lowercase.removeAttribute("disabled", '')
-        $capital.removeAttribute("disabled", '')
+        $lowercase.removeAttribute("disabled", '');
+        $capital.removeAttribute("disabled", '');
         $lowercase.checked = true
         $capital.checked = true
     }
 })
 
-$lowercase.addEventListener("click", (e) => {
-    if (!$lowercase.checked && !$capital.checked) {
-        $containsLetters.setAttribute("disabled", '')
-    }
-    if ($lowercase.checked || $capital.checked) {
-        $containsLetters.removeAttribute("disabled", '')
-    }
-})
+for (const letterTypeCheckbox of $$letterSelection) {
+    letterTypeCheckbox.addEventListener("click", (e) => {
+        if (!$lowercase.checked && !$capital.checked) {
+            $containsLetters.setAttribute("disabled", '')
+        }
+        if ($lowercase.checked || $capital.checked) {
+            $containsLetters.removeAttribute("disabled", '')
+        }
+    })
+}
 
-$capital.addEventListener("click", (e) => {
-    if (!$lowercase.checked && !$capital.checked) {
-        $containsLetters.setAttribute("disabled", '')
-    }
-    if ($lowercase.checked || $capital.checked) {
-        $containsLetters.removeAttribute("disabled", '')
-    }
-})
-
-$generatePass.addEventListener("click", (e) => {
-    showPassOnDisplay()
-})
-
-$refreshPass.addEventListener("click", (e) => {
-    showPassOnDisplay()
-})
-
+for (const button of $$generateOrRefreshNewPass) {
+    button.addEventListener("click", (e) => {
+        showPassOnDisplay()
+    })
+}
