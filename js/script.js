@@ -140,7 +140,7 @@ $copyPass.addEventListener("click", (e) => {
         $copyTxt.removeAttribute('style');
         $copyTxt.innerHTML = 'Copy to clipboard';
     }
-    window.setTimeout(returnToPreviousCopyBtn, 1000)
+    window.setTimeout(returnToPreviousCopyBtn, 750)
 })
 
 $containsLetters.addEventListener("click", (e) => {
