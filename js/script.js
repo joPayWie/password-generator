@@ -15,6 +15,7 @@ const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const symbols = ['$', '#', '?', '&', '+', '!'];
 
+const multidimensionalArray = [lowerLetters, capsLetters, numbers, symbols]
 
 /* *************** DOM selectors ***************** */
 
@@ -49,14 +50,10 @@ const getRandomCharacter = (array) => {
 const generateLargePassword = () => {
     let passArray = [];
     while (passArray.length < 64) {
-        let character = getRandomCharacter(lowerLetters)
-        passArray.push(character)
-        character = getRandomCharacter(numbers)
-        passArray.push(character)
-        character = getRandomCharacter(symbols)
-        passArray.push(character)
-        character = getRandomCharacter(capsLetters)
-        passArray.push(character)
+        for (let i = 0; i < multidimensionalArray.length; i++) {
+            let character = getRandomCharacter(multidimensionalArray[i])
+            passArray.push(character)
+        }
     }
     return passArray
 }
