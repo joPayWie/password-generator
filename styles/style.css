@@ -121,7 +121,7 @@ button {
 }
 
 .fa-arrows-rotate {
-    background-color: #C797DB;
+    background-color: #9b5386;
     padding: 25%;
     border-radius: 30px;
 }
@@ -136,7 +136,7 @@ button {
 .generate-copy-btn {
     height: 7vh;
     width: 18vw;
-    background-color: #C797DB;
+    background-color: #9b5386;
     border-radius: 30px;
     cursor: pointer;
     font-size: 1rem;
