@@ -160,6 +160,10 @@ button {
     background-color: #723D63;
 }
 
+.fa-bolt, .fa-solid {
+    margin-top: 2px;
+}
+
 /* options */
 
 h3 {
