@@ -84,22 +84,8 @@ const defineCheckedCharacters = () => {
     return passArray
 }
 
- const stablishLength = () => {
-    let passwordLength;
-    if ($char8.checked) {
-        passwordLength = 8
-    }
-    else if ($char12.checked) {
-        passwordLength = 12
-    }
-    else {
-        passwordLength = 16
-    }
-    return passwordLength
-} 
-
 const cutPassword = () => {
-    let passLength = stablishLength();
+    let passLength = $('input[name="length"]:checked').value;
     let passToCut = defineCheckedCharacters();
     passToCut = passToCut.slice(0,passLength);
     return passToCut
@@ -126,7 +112,7 @@ showPassOnDisplay()
 
 /***************** EVENTS *******************/
 
-$copyPass.addEventListener("click", (e) => {
+$copyPass.addEventListener("click", () => {
     const $copyTxt = $(".copy-text")
     navigator.clipboard.writeText($passItself.innerText);
     $copyTxt.innerHTML = 'COPIED!';
@@ -140,7 +126,7 @@ $copyPass.addEventListener("click", (e) => {
     window.setTimeout(returnToPreviousCopyBtn, 750)
 })
 
-$containsLetters.addEventListener("click", (e) => {
+$containsLetters.addEventListener("click", () => {
     if (!$containsLetters.checked) {
         $capital.checked = false
         $lowercase.checked = false
@@ -156,7 +142,7 @@ $containsLetters.addEventListener("click", (e) => {
 })
 
 for (const letterTypeCheckbox of $$letterSelection) {
-    letterTypeCheckbox.addEventListener("click", (e) => {
+    letterTypeCheckbox.addEventListener("click", () => {
         if (!$lowercase.checked && !$capital.checked) {
             $containsLetters.setAttribute("disabled", '')
         }
@@ -167,7 +153,7 @@ for (const letterTypeCheckbox of $$letterSelection) {
 }
 
 for (const button of $$generateOrRefreshNewPass) {
-    button.addEventListener("click", (e) => {
+    button.addEventListener("click", () => {
         showPassOnDisplay()
     })
 }
