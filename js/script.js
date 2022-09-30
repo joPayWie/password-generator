@@ -105,15 +105,30 @@ showPassOnDisplay()
 
 /****************** DOM FUNCTIONS **************/
 
-const setAttributeDisabled = (selector) => {
+const disableBtn = (selector) => {
     selector.setAttribute('disabled','');
     selector.style.backgroundColor = 'gray';
     selector.style.cursor = 'auto';
 }
 
-const disabledCopyButtonPushGenerateDisplay = () => {
+const enableBtn = (selector) => {
+    selector.removeAttribute('disabled','');
+    selector.removeAttribute('style')
+}
+
+const disableCheckboxes = (selector) => {
+    selector.checked = false
+    selector.setAttribute("disabled", '');
+}
+
+const enableCheckboxes = (selector) => {
+    selector.removeAttribute("disabled", '');
+    selector.checked = true
+}
+
+const disableCopyButtonAndShowPushGenerateOnDisplay = () => {
     $passItself.innerHTML = `Push Generate⚡`;
-    setAttributeDisabled($copyPass)
+    disableBtn($copyPass)
 }
 
 /***************** EVENTS *******************/
@@ -136,30 +151,24 @@ $copyPass.addEventListener("click", () => {
 
 $containsLetters.addEventListener("click", () => {
     if (!$containsLetters.checked) {
-        $capital.checked = false
-        $lowercase.checked = false
-        $lowercase.setAttribute("disabled", '');
-        $capital.setAttribute("disabled", '');
+        disableCheckboxes($capital)
+        disableCheckboxes($lowercase)
     }
     if ($containsLetters.checked) {
-        $lowercase.removeAttribute("disabled", '');
-        $capital.removeAttribute("disabled", '');
-        $lowercase.checked = true
-        $capital.checked = true
+        enableCheckboxes($lowercase)
+        enableCheckboxes($capital)
     }
 })
 
 for (const letterTypeCheckbox of $$letterSelection) {
     letterTypeCheckbox.addEventListener("click", () => {
         if (!$lowercase.checked && !$capital.checked) {
-            $containsLetters.setAttribute("disabled", '')
-            $containsLetters.checked = false;
-            $passItself.innerHTML = `Push Generate⚡`;
+            disableCheckboxes($containsLetters)
+            disableCopyButtonAndShowPushGenerateOnDisplay() 
         }
         if ($lowercase.checked || $capital.checked) {
-            $containsLetters.removeAttribute("disabled", '')
-            $containsLetters.checked = true;
-            $passItself.innerHTML = `Push Generate⚡`;
+            enableCheckboxes($containsLetters)
+            disableCopyButtonAndShowPushGenerateOnDisplay() 
         }
     })
 }
@@ -169,19 +178,18 @@ for (const checkbox of $$ifNothingsChecked) {
         const $rotateArrows = $("#rotate")
         if (!$containsLetters.checked && !$containsNumbers.checked && !$containsSymbols.checked) {
             $passItself.innerHTML = `Select password type`;
-            setAttributeDisabled($copyPass)
-            setAttributeDisabled($generatePass)
+            disableBtn($copyPass)
+            disableBtn($generatePass)
+            disableBtn($rotateArrows)
             $refreshPass.setAttribute('disabled','');
-            $rotateArrows.style.backgroundColor = 'gray'
             $rotateArrows.classList.remove('active-rotate')
             $generatePass.classList.remove('hover-bolt')
         }
         else {
-            $passItself.innerHTML = `Push Generate⚡`;
-            $generatePass.removeAttribute('disabled','');
-            $generatePass.removeAttribute('style')
-            $refreshPass.removeAttribute('disabled')
-            $rotateArrows.removeAttribute('style')
+            disableCopyButtonAndShowPushGenerateOnDisplay() 
+            enableBtn($generatePass)
+            enableBtn($refreshPass)
+            enableBtn($rotateArrows)
             $rotateArrows.classList.add('active-rotate')
             $generatePass.classList.add('hover-bolt')
         }
@@ -191,7 +199,6 @@ for (const checkbox of $$ifNothingsChecked) {
 for (const button of $$generateOrRefreshNewPass) {
     button.addEventListener("click", () => {
         showPassOnDisplay()
-        $copyPass.removeAttribute('disabled','');
-        $copyPass.removeAttribute('style')
+        enableBtn($copyPass)
     })
 }
