@@ -115,12 +115,12 @@ button {
     margin-left: 10px;
 }
 
-.fa-arrows-rotate:active {
+.active-rotate:active {
     transform: rotate(180deg);
     transition: transform 0.3s ease-out;
 }
 
-.fa-arrows-rotate {
+#rotate {
     background-color: #9b5386;
     padding: 25%;
     border-radius: 30px;
@@ -152,7 +152,7 @@ button {
     background-color:#062c63;
 }
 
-.generate-copy-btn:hover .fa-bolt {
+.hover-bolt:hover .fa-bolt {
     color: rgb(255, 208, 0);
 }
 
