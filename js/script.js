@@ -177,7 +177,7 @@ for (const checkbox of $$ifNothingsChecked) {
     checkbox.addEventListener("click", () => {
         const $rotateArrows = $("#rotate")
         if (!$containsLetters.checked && !$containsNumbers.checked && !$containsSymbols.checked) {
-            $passItself.innerHTML = `Select type`;
+            $passItself.innerHTML = `Select characters`;
             disableBtn($copyPass)
             disableBtn($generatePass)
             disableBtn($rotateArrows)
