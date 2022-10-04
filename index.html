@@ -23,15 +23,15 @@
                     </span> 
                 </div>
                 <button id="refresh-token" class="generate-new-pass" aria-label="Refresh password"> 
-                    <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> 
+                    <i id="rotate" class="fa-solid fa-arrows-rotate active-rotate" aria-hidden="true"></i> 
                 </button>
             </div>
             <div class="generate-and-copy"> 
-                <button class="generate-copy-btn generate-new-pass" id="generate-password" aria-label="Generate new password"> 
-                    Generate
+                <button id="generate-password" class="generate-copy-btn generate-new-pass hover-bolt" aria-label="Generate new password"> 
+                    <span> Generate </span>
                     <i class="fa-solid fa-bolt" aria-hidden="true"></i>
                 </button>
-                <button class="generate-copy-btn" id="copy-password" aria-label="Copy password to clipboard"> 
+                <button id="copy-password" class="generate-copy-btn" aria-label="Copy password to clipboard"> 
                     <span class="copy-text"> Copy to clipboard  </span>
                     <i class="fa-solid fa-copy" aria-hidden="true"></i> 
                 </button>
@@ -42,15 +42,15 @@
                     <form>
                         <h3> Password length </h3> 
                         <div>
-                            <input type="radio" name="length" id="char8" checked> 
+                            <input type="radio" name="length" id="char8" class="if-nothings-checked" value="8" checked> 
                             <label for="char8"> 8 char </label>
                         </div>
                         <div>
-                            <input type="radio" name="length" id="char12"> 
+                            <input type="radio" name="length" id="char12" class="if-nothings-checked" value="12"> 
                             <label for="char12"> 12 char </label>
                         </div>
                         <div>
-                            <input type="radio" name="length" id="char16"> 
+                            <input type="radio" name="length" id="char16" class="if-nothings-checked" value="16"> 
                             <label for="char16"> 16 char </label>
                         </div>
                     </form>
@@ -58,32 +58,32 @@
             
                 <div class="option-container">
                     <form>
-                        <h3> Password type </h3>
+                        <h3> Contains </h3>
                         <div>
-                            <input type="checkbox" name="letters" id="letters" checked> 
-                            <label for="letters"> Letters </label>
+                            <input type="checkbox" name="letters" id="letters" class="if-nothings-checked" checked> 
+                            <label for="letters"> AaBbCc </label>
                         </div>
                         <div>
-                            <input type="checkbox" name="numbers" id="numbers" checked> 
-                            <label for="numbers"> Numbers </label>
+                            <input type="checkbox" name="numbers" id="numbers" class="if-nothings-checked" checked> 
+                            <label for="numbers"> 123456 </label>
                         </div>
                         <div>
-                            <input type="checkbox" name="symbols" id="symbols" checked>
-                            <label for="symbols"> Symbols </label>
+                            <input type="checkbox" name="symbols" id="symbols" class="if-nothings-checked" checked>
+                            <label for="symbols"> @&$%? </label>
                         </div>
                     </form>
                 </div>
 
                 <div class="option-container">
                     <form>
-                        <h3> Letter type </h3> 
+                        <h3> Letter case </h3> 
                         <div>
-                            <input type="checkbox" name="lower" class="letter-selection" id="lower" checked> 
-                            <label for="lower"> Lowercase </label>
+                            <input type="checkbox" name="lower" id="lower" class="letter-selection if-nothings-checked" checked> 
+                            <label for="lower"> abcd </label>
                         </div>
                         <div>
-                            <input type="checkbox" name="caps"  class="letter-selection" id="caps" checked> 
-                            <label for="caps"> Capital </label>
+                            <input type="checkbox" name="caps" id="caps" class="letter-selection if-nothings-checked" checked> 
+                            <label for="caps"> ABCD </label>
                         </div>
                     </form>
                 </div>

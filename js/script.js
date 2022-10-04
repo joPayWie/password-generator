@@ -5,17 +5,13 @@ const $ = (selector) => document.querySelector(selector)
 
 /***************** VARIABLES ***************/  
 
-/* *************** array data ***************** */
+/* *************** data array  ***************** */
 
 const lowerLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-
 const capsLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-const symbols = ['$', '#', '?', '&', '+', '!', '%'];
-
-const multidimensionalArray = [lowerLetters, capsLetters, numbers, symbols]
+const symbols = ['$', '#', '?', '&', '+', '!', '%', '@', '='];
+const multidimensionalArray = [numbers, lowerLetters, symbols, capsLetters]
 
 /* *************** DOM selectors ***************** */
 
@@ -25,6 +21,7 @@ const $copyPass = $("#copy-password")
 const $generatePass = $("#generate-password")
 const $$generateOrRefreshNewPass = $$(".generate-new-pass")
 const $$letterSelection = $$(".letter-selection")
+const $$ifNothingsChecked = $$(".if-nothings-checked")
 
 
 /* *************** password option inputs ***************** */
@@ -32,14 +29,11 @@ const $$letterSelection = $$(".letter-selection")
 const $containsLetters = $("#letters")
 const $containsNumbers = $("#numbers")
 const $containsSymbols = $("#symbols")
-const $char8 = $("#char8")
-const $char12 = $("#char12")
-const $char16 = $("#char16")
 const $lowercase = $("#lower")
 const $capital = $("#caps")
 
 
-/***************** FUNCTIONS *******************/ 
+/***************** PASSWORD FUNCTIONS *******************/ 
 
 const getRandomCharacter = (array) => {
     let randomIndex = Math.floor(Math.random() * array.length)
@@ -57,7 +51,6 @@ const generateLargePassword = () => {
     }
     return passArray
 }
-
 
 const defineCheckedCharacters = () => {
     let passArray = generateLargePassword()
@@ -84,22 +77,8 @@ const defineCheckedCharacters = () => {
     return passArray
 }
 
- const stablishLength = () => {
-    let passwordLength;
-    if ($char8.checked) {
-        passwordLength = 8
-    }
-    else if ($char12.checked) {
-        passwordLength = 12
-    }
-    else {
-        passwordLength = 16
-    }
-    return passwordLength
-} 
-
 const cutPassword = () => {
-    let passLength = stablishLength();
+    let passLength = $('input[name="length"]:checked').value;
     let passToCut = defineCheckedCharacters();
     passToCut = passToCut.slice(0,passLength);
     return passToCut
@@ -124,50 +103,102 @@ const showPassOnDisplay = () => {
 
 showPassOnDisplay()
 
+/****************** DOM FUNCTIONS **************/
+
+const disableBtn = (selector) => {
+    selector.setAttribute('disabled','');
+    selector.style.backgroundColor = 'gray';
+    selector.style.cursor = 'auto';
+}
+
+const enableBtn = (selector) => {
+    selector.removeAttribute('disabled','');
+    selector.removeAttribute('style')
+}
+
+const disableCheckboxes = (selector) => {
+    selector.checked = false
+    selector.setAttribute("disabled", '');
+}
+
+const enableCheckboxes = (selector) => {
+    selector.removeAttribute("disabled", '');
+    selector.checked = true
+}
+
+const generatePush = () => {
+    $passItself.innerHTML = `Push Generate⚡`;
+    disableBtn($copyPass)
+}
+
 /***************** EVENTS *******************/
 
-$copyPass.addEventListener("click", (e) => {
+$copyPass.addEventListener("click", () => {
     const $copyTxt = $(".copy-text")
     navigator.clipboard.writeText($passItself.innerText);
     $copyTxt.innerHTML = 'COPIED!';
     $copyTxt.style.color = '#ffd000';
     $copyPass.style.backgroundColor = '#723D63';
+    $passItself.style.color = '#16C60C';
     const returnToPreviousCopyBtn = () => {
         $copyPass.removeAttribute('style');
         $copyTxt.removeAttribute('style');
         $copyTxt.innerHTML = 'Copy to clipboard';
+        $passItself.removeAttribute('style');
     }
     window.setTimeout(returnToPreviousCopyBtn, 750)
 })
 
-$containsLetters.addEventListener("click", (e) => {
+$containsLetters.addEventListener("click", () => {
     if (!$containsLetters.checked) {
-        $capital.checked = false
-        $lowercase.checked = false
-        $lowercase.setAttribute("disabled", '');
-        $capital.setAttribute("disabled", '');
+        disableCheckboxes($capital)
+        disableCheckboxes($lowercase)
     }
     if ($containsLetters.checked) {
-        $lowercase.removeAttribute("disabled", '');
-        $capital.removeAttribute("disabled", '');
-        $lowercase.checked = true
-        $capital.checked = true
+        enableCheckboxes($lowercase)
+        enableCheckboxes($capital)
     }
 })
 
 for (const letterTypeCheckbox of $$letterSelection) {
-    letterTypeCheckbox.addEventListener("click", (e) => {
+    letterTypeCheckbox.addEventListener("click", () => {
         if (!$lowercase.checked && !$capital.checked) {
-            $containsLetters.setAttribute("disabled", '')
+            $containsLetters.checked = false
+            generatePush() 
         }
         if ($lowercase.checked || $capital.checked) {
-            $containsLetters.removeAttribute("disabled", '')
+            $containsLetters.checked = true
+            generatePush() 
+        }
+    })
+}
+
+for (const checkbox of $$ifNothingsChecked) {
+    checkbox.addEventListener("click", () => {
+        const $rotateArrows = $("#rotate")
+        if (!$containsLetters.checked && !$containsNumbers.checked && !$containsSymbols.checked) {
+            $passItself.innerHTML = `Select characters`;
+            disableBtn($copyPass)
+            disableBtn($generatePass)
+            disableBtn($rotateArrows)
+            $refreshPass.setAttribute('disabled','');
+            $rotateArrows.classList.remove('active-rotate')
+            $generatePass.classList.remove('hover-bolt')
+        }
+        else {
+            generatePush() 
+            enableBtn($generatePass)
+            enableBtn($refreshPass)
+            enableBtn($rotateArrows)
+            $rotateArrows.classList.add('active-rotate')
+            $generatePass.classList.add('hover-bolt')
         }
     })
 }
 
 for (const button of $$generateOrRefreshNewPass) {
-    button.addEventListener("click", (e) => {
+    button.addEventListener("click", () => {
         showPassOnDisplay()
+        enableBtn($copyPass)
     })
 }
